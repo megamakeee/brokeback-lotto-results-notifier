@@ -13,6 +13,7 @@ Want to contribute? Contact through Brokeback Whatsapp group and we shall discus
 ### Todos
 
  - Write the functions to notify Brokebackers via SMS / Email / Whatsapp
- - Check the 
+ - Check the lottery lines from text file? CSV? JSON?
+ - Something else
  
 ![](https://decider.com/wp-content/uploads/2014/10/brokeback-mountain2.png?w=500&crop=1) 
