@@ -8,6 +8,8 @@ from csv import reader
     Function to get the latest lotto results
 
 """
+
+
 def get_latest_lotto_results():
     # Set host
     baseURL = "https://www.veikkaus.fi"
@@ -37,6 +39,7 @@ def get_latest_lotto_results():
             raise Exception("Empty result set", 69)
     else:
         raise Exception("API query failed", r.status_code)
+
 
 """
     Function to read own lottery numbers to list of lists
