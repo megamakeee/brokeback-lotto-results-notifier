@@ -41,7 +41,9 @@ def get_latest_lotto_results():
 
     if r.status_code == 200:
         if len(r.json()) > 0:
-            return r.json()[0]["results"][0]["primary"] + r.json()[0]["results"][0]["secondary"] + r.json()[0]["results"][0]["tertiary"]
+            return r.json()[0]["results"][0]["primary"] + \
+                   r.json()[0]["results"][0]["secondary"] + \
+                   r.json()[0]["results"][0]["tertiary"]
         else:
             raise Exception("Empty result set", 69)
     else:
