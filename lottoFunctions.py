@@ -2,15 +2,17 @@ import requests
 import json
 import time
 import datetime
+import os
+from twilio.rest import Client
 from csv import reader
-
-"""
-    Function to get the latest lotto results
-
-"""
 
 
 def get_latest_lotto_results():
+    """
+    Function to get the latest lotto results
+
+    """
+
     # Set host
     baseURL = "https://www.veikkaus.fi"
     endpointURL = "/api/draw-results/v1/games/LOTTO/draws/by-week/"
@@ -41,13 +43,12 @@ def get_latest_lotto_results():
         raise Exception("API query failed", r.status_code)
 
 
-"""
+def get_own_lotto_lines_to_list_of_lists(filename):
+    """
     Function to read own lottery numbers to list of lists
 
-"""
+    """
 
-
-def get_own_lotto_lines_to_list_of_lists(filename):
     # read csv file as a list of lists
     with open(filename, 'r') as read_obj:
         # Pass the file object to reader() to get the reader object
@@ -55,3 +56,19 @@ def get_own_lotto_lines_to_list_of_lists(filename):
         # Pass reader object to list() to get a list of lists
         list_of_rows = list(csv_reader)
         return list_of_rows
+
+
+def send_sms(to_number, from_number, message):
+    """
+    Function to send SMS
+
+    """
+    account_sid = os.environ.get('twilio_account_sid')
+    auth_token = os.environ.get('twilio_auth_token')
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+                                from_=from_number,
+                                body=message,
+                                to=to_number
+                            )
