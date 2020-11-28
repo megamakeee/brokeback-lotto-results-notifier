@@ -36,14 +36,18 @@ def get_latest_lotto_results():
 
     if r.status_code == 200:
         if len(r.json()) > 0:
-            return r.json()[0]["results"][0]["primary"] + r.json()[0]["results"][0]["secondary"] + r.json()[0]["results"][0]["tertiary"]
+            ret = r.json()[0]["results"][0]["primary"] + \
+                r.json()[0]["results"][0]["secondary"] + \
+                r.json()[0]["results"][0]["tertiary"]
+
+            return set(ret)
         else:
             raise Exception("Empty result set", 69)
     else:
         raise Exception("API query failed", r.status_code)
 
 
-def get_own_lotto_lines_to_list_of_lists(filename):
+def get_own_lotto_lines_to_list_of_sets(filename):
     """
     Function to read own lottery numbers to list of lists
 
@@ -55,7 +59,13 @@ def get_own_lotto_lines_to_list_of_lists(filename):
         csv_reader = reader(read_obj)
         # Pass reader object to list() to get a list of lists
         list_of_rows = list(csv_reader)
-        return list_of_rows
+
+    list_of_sets = []
+
+    for x in list_of_rows:
+        list_of_sets.append(set(x))
+
+    return list_of_sets
 
 
 def send_sms(to_number, from_number, message):

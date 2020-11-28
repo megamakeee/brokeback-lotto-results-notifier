@@ -15,5 +15,5 @@ numbers_file = "numbers.csv"
 lotto_results = lf.get_latest_lotto_results()
 print(lotto_results)
 
-lotto_lines = lf.get_own_lotto_lines_to_list_of_lists(numbers_file)
+lotto_lines = lf.get_own_lotto_lines_to_list_of_sets(numbers_file)
 print(lotto_lines)
