@@ -7,7 +7,7 @@ from twilio.rest import Client
 from csv import reader
 
 
-def get_latest_lotto_results():
+def get_latest_lotto_draw():
     """
     Function to get the latest lotto results
 
@@ -36,11 +36,15 @@ def get_latest_lotto_results():
 
     if r.status_code == 200:
         if len(r.json()) > 0:
-            ret = r.json()[0]["results"][0]["primary"] + \
-                r.json()[0]["results"][0]["secondary"] + \
-                r.json()[0]["results"][0]["tertiary"]
+            ret = []
+            primary_numbers = set(r.json()[0]["results"][0]["primary"])
+            secondary_number = set(r.json()[0]["results"][0]["secondary"])
+            tertiary_number = set(r.json()[0]["results"][0]["tertiary"])
+            ret.append(primary_numbers)
+            ret.append(secondary_number)
+            ret.append(tertiary_number)
 
-            return set(ret)
+            return ret
         else:
             raise Exception("Empty result set", 69)
     else:
@@ -82,3 +86,26 @@ def send_sms(to_number, from_number, message):
                                 body=message,
                                 to=to_number
                             )
+
+
+def check_results(current_draw, played_lines):
+    """
+    Function to check the results
+
+    """
+    results = []
+    primary_numbers = current_draw[0]
+    secondary_number = current_draw[1]
+
+    for row in played_lines:
+        correct_primary_numbers = len(primary_numbers.intersection(row))
+        correct_secondary_numbers = len(secondary_number.intersection(row))
+
+        if correct_primary_numbers > 0 and correct_secondary_numbers > 0:
+            result = f"{correct_primary_numbers}+{correct_secondary_numbers}"
+            results.append(result)
+        elif correct_primary_numbers > 0 and correct_secondary_numbers < 1:
+            result = f"{correct_primary_numbers}"
+            results.append(result)
+
+    return results
