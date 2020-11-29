@@ -26,5 +26,3 @@ results = lf.check_results(current_draw, played_lines)
 print(results)
 
 # If there are wins get the prizes
-
-

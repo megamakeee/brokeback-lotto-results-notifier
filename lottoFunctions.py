@@ -101,10 +101,16 @@ def check_results(current_draw, played_lines):
         correct_primary_numbers = len(primary_numbers.intersection(row))
         correct_secondary_numbers = len(secondary_number.intersection(row))
 
-        if correct_primary_numbers > 0 and correct_secondary_numbers > 0:
+        if correct_primary_numbers == 3 and correct_secondary_numbers > 0:
             result = f"{correct_primary_numbers}+{correct_secondary_numbers}"
             results.append(result)
-        elif correct_primary_numbers > 0 and correct_secondary_numbers < 1:
+        elif correct_primary_numbers >= 4 and correct_primary_numbers <= 6:
+            result = f"{correct_primary_numbers}"
+            results.append(result)
+        elif correct_primary_numbers == 6 and correct_secondary_numbers > 0:
+            result = f"{correct_primary_numbers}+{correct_secondary_numbers}"
+            results.append(result)
+        elif correct_primary_numbers == 7:
             result = f"{correct_primary_numbers}"
             results.append(result)
 
