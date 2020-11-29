@@ -1,4 +1,10 @@
-#virtualenvs
+# phonenumbers file
+phonenumbers.csv
+
+# lotto numbers file
+numbers.csv
+
+# virtualenvs
 venv/
 
 # Byte-compiled / optimized / DLL files
