@@ -2,6 +2,17 @@
 A simple python script that will get the latest lottery results, check them against Brokeback crews own lottery lines and notify the results.
 ### Installation
 * Get the code and install place it to a server of your choice.
+* Create numbers.csv file to the root <script-location>/brokeback-lotto-results-notifier/ and list all your lotto numbers as comma-separated. One lotto line on one line of the file. For example:
+```
+3,20,28,29,30,31,39
+2,5,7,8,18,24,33
+3,22,31,33,36,38,39
+```
+* Create phonenumbers.csv file to the root <script-location>/brokeback-lotto-results-notifier/ and list all your fellow gamblers' phonenumbers. One phonenumber on one line of the file. For example:
+```
++358123456789
++358987654321
+```
 * Install python and pip
 ```bash
 sudo apt-get install python3 pip
