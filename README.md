@@ -28,6 +28,7 @@ source ~/.bash_profile
 ```
 * Schedule the script to run every saturday ten minutes after lotto has been drawn (21:10)
 ```bash
+crontab -e
 10 21 * * 6 python3 <script-location>/brokeback-lotto-results-notifier/lotto.py >/dev/null 2>&1
 ```
 ### Development
